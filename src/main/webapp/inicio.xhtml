@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Lista de Tarefas</title>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+        <h:panelGrid columns="2">
+            <h:outputLabel for="titulo">Título:</h:outputLabel>
+            <h:inputText id="titulo" value="#{tarefaBean.tarefa.titulo}" />
+
+            <h:outputLabel for="descricao">Descrição:</h:outputLabel>
+            <h:inputText id="descricao" value="#{tarefaBean.tarefa.descricao}" />
+
+            <h:commandButton value="Cadastrar" action="#{tarefaBean.cadastrarTarefa}" />
+        </h:panelGrid>
+    </h:form>
+
+    <h:dataTable id="tabelaTarefas" value="#{tarefaBean.tarefas}" var="tarefa">
+        <h:column>
+            <f:facet name="header">Título</f:facet>
+            #{tarefa.titulo}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Descrição</f:facet>
+            #{tarefa.descricao}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Ação</f:facet>
+            <h:commandButton value="Excluir" action="#{tarefaBean.excluirTarefa(tarefa)}" />
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
